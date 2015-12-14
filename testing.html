@@ -1,0 +1,97 @@
+<html lang="en" ng-app="checkboxDemo1">
+<head>
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc5/angular-material.min.css">
+</head>
+<body ng-cloak>
+  <!--
+    Your HTML content here
+  -->
+<div ng-controller="AppCtrl" class="md-padding" ng-cloak>
+  <fieldset class="standard">
+    <legend>Using <code>ng-model</code></legend>
+    <div layout="row" layout-wrap>
+      <div flex="50">
+        <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+          Checkbox 1: {{ data.cb1 }}
+        </md-checkbox>
+      </div>
+      <div flex="50">
+        <md-checkbox
+            ng-model="data.cb2"
+            aria-label="Checkbox 2"
+            ng-true-value="'yup'"
+            ng-false-value="'nope'"
+            class="md-warn md-align-top-left">
+          Checkbox 2 (md-warn)  <br/>
+          <span class="ipsum">
+            Duis placerat lectus et justo mollis, nec sodales orci congue. Vestibulum semper non urna ac suscipit.
+            Vestibulum tempor, ligula id laoreet hendrerit, massa augue iaculis magna,
+            sit amet dapibus tortor ligula non nibh.
+          </span>
+          <br/>
+          {{ data.cb2 }}
+        </md-checkbox>
+      </div>
+      <div flex="50">
+        <md-checkbox ng-disabled="true" aria-label="Disabled checkbox" ng-model="data.cb3">
+          Checkbox: Disabled
+        </md-checkbox>
+      </div>
+      <div flex="50">
+        <md-checkbox ng-disabled="true" aria-label="Disabled checked checkbox" ng-model="data.cb4" ng-init="data.cb4=true">
+          Checkbox: Disabled, Checked
+        </md-checkbox>
+      </div>
+      <div flex="50">
+        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb5" class="md-primary">
+          Checkbox (md-primary): No Ink
+        </md-checkbox>
+      </div>
+    </div>
+  </fieldset>
+</div>
+<div ng-init="initRand()" md-ink-ripple="{{ rand }}">
+  Ripples with the return value of 'randomColor' function
+  {{ rand }}
+</div>
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc7/angular-material.min.js"></script>
+
+  <!-- Your application bootstrap  -->
+  <script type="text/javascript">
+    /**
+     * You must include the dependency on 'ngMaterial'
+     */
+
+  angular.module('checkboxDemo1', ['ngMaterial'])
+  .controller('AppCtrl', function($scope) {
+  $scope.data = {};
+  $scope.data.cb1 = true;
+  $scope.data.cb2 = false;
+  $scope.data.cb3 = false;
+  $scope.data.cb4 = false;
+  $scope.data.cb5 = false;
+  var rand = 1;
+  $scope.randomColor = function () {
+    
+        return rand;
+  };
+  $scope.initRand = function(){
+    alert('hi');
+    rand = '#' + Math.floor(Math.random()*16777215).toString(16);
+  };
+
+});
+
+  
+  </script>
+
+</body>
+</html>
